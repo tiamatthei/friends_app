@@ -62,14 +62,12 @@ function validateRegister() {
         })
         .catch(error => {
 
-            console.log(error);
         });
 
     return true;
 }
 
 function validateLogin() {
-    console.log(document.forms);
     var email = document.forms["loginForm"]["email-login"].value;
     var password = document.forms["loginForm"]["password-login"].value;
     if (email == "") {
@@ -103,7 +101,6 @@ function validateLogin() {
             window.location.href = `/friends?name=${name}`;
         })
         .catch(error => {
-            console.log(error);
             alert("wrong username or password");
         });
 
@@ -130,12 +127,9 @@ function addFriend(user_id, f_id) {
             }
             throw new Error('Request failed');
         }).then(data => {
-            console.log(data);
             window.location.reload();
         })
-        .catch(error => {
-            console.log(error);
-        });
+        .catch(error => {});
 
     return true;
 }
@@ -159,12 +153,9 @@ function removeFriend(user_id, f_id) {
             }
             throw new Error('Request failed');
         }).then(data => {
-            console.log(data);
             window.location.reload();
         })
-        .catch(error => {
-            console.log(error);
-        });
+        .catch(error => {});
 
     return true;
 }

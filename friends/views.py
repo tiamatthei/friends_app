@@ -21,9 +21,6 @@ def friends(request):
         if friend in not_friends:
             not_friends.remove(friend)
 
-
-    print(friends)
-    print(MetaUser.objects.filter(user=User.objects.filter(name=name).values()[0]['id']).values()[0])
     if len(user_data)>0:
         context = {'user_data': user_data, "not_friends":not_friends, "friends":friends}
         return render(request, 'friends.html', context)
@@ -46,12 +43,10 @@ def add_friend(request):
     if request.method == 'POST':
         user_id = request.POST.get("user_id", '')
         new_friend = request.POST.get("new_friend", '')
-        print("u_id: ", user_id, "  ", new_friend)
         
         meta_user = MetaUser.objects.filter(user=User.objects.filter(id=user_id).values()[0]['id'])[0]
-        print(meta_user)
-        friends = meta_user.friends.add(new_friend)
-        print(friends)
+        
+        meta_user.friends.add(new_friend)
         
         data = {'message':"Success", "status":200}
         return JsonResponse(data, status=data['status'])
@@ -64,12 +59,9 @@ def remove_friend(request):
     if request.method == 'POST':
         user_id = request.POST.get("user_id", '')
         to_delete = request.POST.get("to_delete", '')
-        print("u_id: ", user_id, "  ", to_delete)
         
         meta_user = MetaUser.objects.filter(user=User.objects.filter(id=user_id).values()[0]['id'])[0]
-        print(meta_user)
-        friends = meta_user.friends.remove(to_delete)
-        print(friends)
+        meta_user.friends.remove(to_delete)
         
         data = {'message':"Success", "status":200}
         return JsonResponse(data, status=data['status'])
@@ -93,13 +85,7 @@ def register(request):
         
         meta_user = MetaUser(user=user)
         meta_user.save()
-
-        # You can also save additional data like the date of birth (dob)
-        # by creating a separate model for user profile information and
-        # using a OneToOneField to link it to the User model.
-
-        # profile = UserProfile(user=user, dob=dob)
-        # profile.save()
+        
         data = {'message':"Success, voting started", "status":200}
         return JsonResponse(data, status=data['status'])
     
