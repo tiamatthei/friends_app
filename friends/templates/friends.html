@@ -56,7 +56,7 @@
             </tr>
             {% for user in not_friends %}
             <tr>
-                <td>{{user.alias}}</td>
+                <td><a href="./user?user_id={{user.id}}">{{user.alias}}</a></td>
                 <td class="add-friend-column">
                     <button onclick="addFriend({{user_data.id}}, {{user.id}});" class='btn btn-primary'>Add as Friend</button>
                 </td>
