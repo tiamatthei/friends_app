@@ -13,9 +13,12 @@ class User(models.Model):
     
     def __str__(self):
         return self.name
-    
+    class Meta:
+        managed = True
 
 class MetaUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='myuser')
     friends = models.ManyToManyField(User, blank=True)
+    class Meta:
+        managed = True
 

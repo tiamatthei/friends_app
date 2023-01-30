@@ -1,1 +1,66 @@
-<h3>lo hiciste</h3>
+<!DOCTYPE html>
+<html lang="en">{% load static %}
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Friends app profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href={% static 'style.css' %} />
+    <script src={% static 'script.js' %}></script>
+
+</head>
+
+<body>{% csrf_token %}
+    <div class="container">
+        <span></span>
+        <h1>Hello {{user_data.alias}}!</h1>
+        <h2>Here is the list of your friends</h2>
+        <table class="friends-table">
+            <tr>
+                <th>Alias</th>
+                <th class="action-column">Actions</th>
+            </tr>
+            {% if friends|length == 0 %}
+                <h3>You don't have friends yet.</h3>
+            {% endif %}
+            {% for user in friends %}
+            <tr>
+                <td>{{user.alias}}</td>
+                <td class="add-friend-column">
+                    <a class='btn btn-primary' href="./user?user_id={{user.id}}">View Profile</a> |
+                    <a class='btn btn-primary' href="javascript:removeFriend({{user_data.id}}, {{user.id}});">Remove as Friend</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+    <div class="container">
+        <h2>Add Friend</h2>
+        <table class="add-friend-table">
+            <tr>
+                <th>Alias</th>
+                <th class="add-friend-column">Action</th>
+            </tr>
+            {% for user in not_friends %}
+            <tr>
+                <td>{{user.alias}}</td>
+                <td class="add-friend-column">
+                    <button onclick="addFriend({{user_data.id}}, {{user.id}});" class='btn btn-primary'>Add as Friend</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+
+</html>

@@ -17,3 +17,44 @@ button {
 .form-group.text-right {
     text-align: right;
 }
+
+.friends-table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+.friends-table th,
+.friends-table td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.friends-table th {
+    background-color: #f2f2f2;
+}
+
+.add-friend-table {
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    border-collapse: collapse;
+}
+
+.add-friend-table th,
+.add-friend-table td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.add-friend-table th {
+    background-color: #f2f2f2;
+}
+
+.action-column {
+    text-align: center;
+}
+
+.add-friend-column {
+    text-align: center;
+}

@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'examen_coding_dojo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'friendsapp',
         'USER': 'friendsapp_user',
         'HOST': 'dpg-cfbsukda49937b6obo40-a.ohio-postgres.render.com', # INTERNAL(DEPLOY): dpg-cfbsukda49937b6obo40-a
