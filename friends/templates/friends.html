@@ -20,7 +20,9 @@
 </head>
 
 <body>{% csrf_token %}
-    <div class="align-self-end"><a class="text-right" href='/'>logout</a></div>
+    <div class="d-flex align-items-end flex-column container">
+        <a href='/'>logout</a>
+    </div>
     <div class="container">
         <span></span>
         <h1>Hello {{user_data.alias}}!</h1>
