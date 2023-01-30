@@ -85,7 +85,7 @@ DATABASES = {
         'USER': 'friendsapp_user',
         'HOST': 'dpg-cfbsukda49937b6obo40-a.ohio-postgres.render.com', # INTERNAL(DEPLOY): dpg-cfbsukda49937b6obo40-a
         'PORT': '5432',
-        'PASSWORD': 'IBrA6N381aHF6SvjthvkOmcHlWlNF98D',
+        'PASSWORD': os.getenv("PGPWD"),
     }
 }
 
