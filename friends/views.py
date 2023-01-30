@@ -15,12 +15,15 @@ def friends(request):
     user_data = list(User.objects.filter(name=name).values())[0]
     meta_user = MetaUser.objects.filter(user=User.objects.filter(name=name).values()[0]['id'])[0]
     friends = list(meta_user.friends.all())
+    not_friends = list(User.objects.exclude(id=user_data['id']))
     
+    for friend in friends:
+        if friend in not_friends:
+            not_friends.remove(friend)
 
 
     print(friends)
     print(MetaUser.objects.filter(user=User.objects.filter(name=name).values()[0]['id']).values()[0])
-    not_friends = list(User.objects.exclude(id=user_data['id']))
     if len(user_data)>0:
         context = {'user_data': user_data, "not_friends":not_friends, "friends":friends}
         return render(request, 'friends.html', context)
